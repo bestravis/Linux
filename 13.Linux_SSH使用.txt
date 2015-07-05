@@ -1,0 +1,5 @@
+
+
+SSH 
+使用ssh客户端可以登录到linux，前提是linux服务端的sshd必须已经启动。
+

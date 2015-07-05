@@ -1,0 +1,67 @@
+
+RPM(Redhat Package Manager)，是一种用于互联网下载包的打包和安装工具。
+
+apache-??????.i386.rpm (i386表示软件运行的硬件平台)
+
+--查询Linux中安装了哪些RPM软件
+rpm -qa
+rpm -qa | more
+
+--查询软件包是否安装
+rpm -qa | grep mysql 或 rpm -q mysql
+
+--查询软件包信息
+rpm -qi mysql 
+
+--查询软件包中的文件
+rpm -ql jdk
+
+--查询文件所属的软件包
+rpm -qf /etc/passwd
+
+--安装rpm包
+rpm -i 包名全路径
+
+--安装并提示信息
+rpm -ivh 包名全路径 (i表示安装，v表示提示，h表示进度)
+
+--卸载
+rpm -e jdk
+rpm -e --nodeps jdk (卸载并卸载依赖)
+
+--升级RPM包
+rpm -U 包名全路径
+rpm -U cvs-1.11.2-10.i386.rpm
+
+------------------------------------------------------------------------
+
+Samba服务可以使Windows与Linux之间实现资源共享。
+
+--安装samba
+cp samba* /home
+rpm -ivh samba-?????.rpm
+
+--创建用户
+useradd youyou
+passwd youyou
+
+--把/etc/passwd中的用户都加到smbpasswd中
+cat /etc/passwd | mksmbpasswd.sh > /etc/samba/smbpasswd
+
+--设置密码
+smbpasswd youyou
+
+--启动samba服务
+service smb start
+service smb stop
+service smb restart
+
+--测试使用
+在Windows中 -> "运行" -> 输入"\\192.168.222.88"
+
+--卸载rpm
+rpm -e samba
+rpm -e --nodeps samba (强制卸载)
+
+
+

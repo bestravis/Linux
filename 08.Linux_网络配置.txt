@@ -1,0 +1,83 @@
+
+TCP/IP 一组协议、通讯协议
+
+TCP 传输控制协议
+IP Internet协议
+
+理论分为:
+应用层 application
+表示层 presention
+会话层 session
+传输层 transport
+网络层 ip
+数据链路层 link
+物理层 physical
+
+实际上:
+应用层
+传输层
+网络层
+链路层
+
+-----------------------------------------------------------------------
+
+--查看IP
+ifconfig
+
+--测试IP是否畅通
+ping www.baidu.com
+
+--监控网络状态
+netstat -an
+
+--查看端口和进程
+netstat -anp | more 或 netstat -ntlp
+
+--追踪路由
+traceroute www.sohu.com
+
+--显示路由表
+route
+
+-----------------------------------------------------------------------
+
+网络配置
+
+第一种:
+1.输入setup
+2.设置网络
+3.重启网络服务
+/etc/rc.d/init.d/network restart 或 service network restart
+
+第二种(临时生效):
+1.设置网卡
+ifconfig eth0 192.168.8.8 (eth0表示第几块网卡)
+2.设置子网掩码
+ifconfig eth0 netmask 192.168.1.1
+(ifconfig eth0 192.168.1.155 netmask 255.255.255.0)
+
+第三种(设置静态IP):
+1.修改配置文件 
+vi /etc/sysconfig/network-scripts/ifcfg-eth0
+
+内容如下:
+DEVICE="eth0"  --设备名称
+BOOTPROTO="dhcp"  --网络协议:动态主机配置
+HWADDR="00:0C:29:55:A7:87"  --mac地址
+IPV6INIT="yes"
+NM_CONTROLLED="yes"
+ONBOOT="yes"   --开机自启动
+TYPE="Ethernet"  --网络类型
+UUID="98956df1-2a83-42d5-b123-de8c0f084813"
+
+修改为:
+...
+BOOTPROTO="static"  --网络协议:静态IP
+...
+IPADDR=192.168.1.131  --IP地址
+NETMASK=255.255.255.0  --子网掩码
+GATEWAY=192.168.1.1  --默认网关
+DNS1=192.168.1.1   --DNS配置
+
+2.重启网络服务(貌似只有重启主机才生效)
+/etc/rc.d/init.d/network restart 或 service network restart

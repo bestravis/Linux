@@ -1,0 +1,58 @@
+安装nginx
+
+----------------------------------------------------------------------
+第一种(yum安装):
+
+--添加nginx.repo
+vi /etc/yum.repos.d/nginx.repo
+
+内容如下:
+[nginx]
+name=nginx repo
+baseurl=http://nginx.org/packages/centos/$releasever/$basearch/
+gpgcheck=0
+enabled=1
+
+--安装
+yum -y install nginx
+
+--查看安装目录
+rpm -ql nginx
+
+--启动
+nginx start
+nginx -s stop
+nginx -s reload
+
+----------------------------------------------------------------------
+第二种(tar包安装):
+
+--准备安装包
+tar -zxvf nginx-1.8.0.tar.gz 
+mv nginx-1.8.0 nginx
+cd nginx
+
+--安装
+./configure
+make
+sudo make install
+
+--检测是否安装成功
+cd  /usr/local/nginx/sbin
+./nginx -t
+
+--启动
+./sbin/nginx
+
+----------------------------------------------------------------------
+
+upstream 127.0.0.1  {
+  server 127.0.0.1:18080 weight=1;
+  server 127.0.0.1:28080 weight=1;
+}
+ 
+server {
+  location / {
+    proxy_pass  http://127.0.0.1;
+  }
+}

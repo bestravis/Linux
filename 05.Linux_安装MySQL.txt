@@ -1,0 +1,66 @@
+
+安装mysql
+
+--检查是否已安装(grep的-i选项表示匹配时忽略大小写)
+rpm -qa mysql 或 rpm -qa | grep -i mysql
+
+--卸载已安装的mysql
+rpm -e mysql 或 rpm -e --nodeps mysql
+
+--查看mysql进程
+ps -aux | grep mysql
+
+--安装mysql(安装到/usr/local/mysql目录下)
+cp /home/mysql-5.6.25-linux-glibc2.5-x86_64.tar.gz /usr/local
+cd /usr/local
+tar -zxvf mysql-5.6.25-linux-glibc2.5-x86_64.tar.gz
+mv mysql-5.6.25-linux-glibc2.5-x86_64 mysql (重命名文件夹)
+
+--添加系统mysql组和mysql用户
+groupadd mysql
+useradd -g mysql mysql
+
+--修改目录拥有者为mysql用户 
+cd /usr/local/mysql
+chown -R mysql:mysql ./
+
+--安装数据库
+./scripts/mysql_install_db --user=mysql
+
+--修改当前目录拥有者为root用户
+chown -R root:root .
+
+--修改data目录的拥有者为mysql用户
+chown -R mysql data
+
+--启动、重启、停止mysql服务
+service mysqld start
+service mysqld restart
+service mysqld stop
+
+--检查是否启动
+netstat -anp | grep mysqld 或 /etc/rc.d/init.d/mysqld status
+
+--修改root用户密码
+./bin/mysqladmin -u root password 'yuedp'
+
+--使用mysql
+./bin/mysql -u root -p
+
+--使用软链接把mysql客户端放到默认路径(在任何目录下都可以使用mysql)
+ln -s /usr/local/mysql/bin/mysql /usr/local/bin/mysql
+
+--备份
+./mysqldump -u root -p密码 库名 > data.bak
+
+--恢复
+./mysql -u root -p密码 库名 < data.bak
+
+--添加开机启动mysql服务
+cp support-files/mysql.server /etc/rc.d/init.d/mysqld
+cd /etc/rc.d/init.d
+chmod +x mysqld (改为可执行)
+/sbin/chkconfig --del mysqld
+/sbin/chkconfig --add mysqld
+
+(注:mysql-jdbc-***.jar要放在/jdk/jre/lib/ext下)

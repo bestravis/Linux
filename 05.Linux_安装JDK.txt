@@ -1,0 +1,64 @@
+
+安装JDK
+
+--卸载rpm版的jdk
+rpm -qa | grep jdk (查找已安装的jdk)
+rpm -e [上步查找到的文件]
+rpm -e --nodeps [上步查找到的文件] (强制删除)
+
+--删除java和javac命令
+rm -f /usr/bin/java
+rm -f /usr/bin/javac
+
+--创建安装目录/usr/java
+mkdir /usr/java
+
+--复制安装包到/usr/java
+cp jdk-7u79-linux-x64.rpm.bin /usr/java
+mv /home/jdk-7u79-linux-x64.rpm.bin /usr/java 
+
+--修改jdk包的权限
+cd /usr/java
+chmod 755 jdk-7u79-linux-x64.rpm.bin
+
+--解压并安装(默认安装在/usr/java中)
+./jdk-7u79-linux-x64.rpm.bin 
+rpm -ivh jdk-7u79-linux-x64.rpm 
+tar -zxvf apache-tomcat-7.0.62.tar.gz
+
+--查看环境配置文件
+cat /etc/profile
+
+--配置Java环境变量
+vi  /etc/profile
+
+--在该profile文件中最下面添加一下内容
+JAVA_HOME=/usr/java/jdk1.7.0_79
+PATH=$JAVA_HOME/bin:$PATH
+CLASSPATH=.:$JAVA_HOME/lib/jt.jar:$JAVA_HOME/lib/tools.jar (注意前面的.:)
+export JAVA_HOME PATH CLASSPATH (export表示把这些配置引用到环境变量中去)
+
+JAVA_HOME=/usr/java/jdk1.7.0_79
+PATH=$JAVA_HOME/bin:$PATH
+CLASSPATH=.:$JAVA_HOME/lib/jt.jar:$JAVA_HOME/lib/tools.jar
+export JAVA_HOME PATH CLASSPATH
+
+--读取并执行/etc/profile，使其生效(注销或重启也可以)
+source /etc/profile 或 . /etc/profile
+
+--测试
+java -version
+javac -version
+
+
+----------------------------------------------------------------------
+安装eclipse
+
+----复制安装包
+cp eclipse-????.tar.gz /home
+cd /home
+tar -zxvf eclipse-?????.tar.gz
+
+--启动eclipse(先进入图形界面)
+cd eclipse
+./eclipse 或 ./eclipse & (&表示立即释放控制台，后台运行)

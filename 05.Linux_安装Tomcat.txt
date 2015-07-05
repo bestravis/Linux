@@ -1,0 +1,16 @@
+
+安装tomcat
+
+--创建安装目录/usr/tomcat
+mkdir /usr/tomcat
+
+--移动安装包到/usr/tomcat
+cd /usr/tomcat
+mv /home/apache-tomcat-7.0.62.tar.gz . (.表示当前目录)
+
+--安装
+tar -zxvf apache-tomcat-7.0.62.tar.gz
+
+--更改目录名称
+mv ./apache-tomcat-7.0.62 ./tomcat-1
+

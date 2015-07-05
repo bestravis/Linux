@@ -1,0 +1,37 @@
+
+任务调度 crontab
+
+系统在某个时间执行的特定的命令或程序(不能精确到秒)。
+
+---------------------------------------------------------------------------
+
+--执行任务
+crontab -e
+
+--终止任务
+crontab -r
+
+--查看当前所有任务
+crontab -l
+
+--显示系统当前时间
+date
+date > /home/a.txt
+date >> /home/a.txt
+
+--每天凌晨2点执行
+0 2 * * * date >> /home/a.txt
+* * * * * cp /home/a.txt /root (每分钟都复制)
+
+--shell编程实现任务调度
+1.新建mytask.sh
+vi mytask.sh
+2.写入如下内容 
+date >> /home/a.txt
+cp /home/a.txt /root
+3.修改可执行权限 
+chmod 744 mytask.sh
+4.设置任务
+crontab -e * * * * * /root/mytask.sh
+
+

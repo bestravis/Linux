@@ -1,0 +1,29 @@
+
+Linux命令 -> Shell -> Linux内核
+
+shell可以理解为一个模块，负责解释把Linux命令解释成Linux内核可以执行的代码。
+shell类似与Windows下的批处理命令(*.bat)。
+
+shell分类:
+Bourne       /bin/sh
+C            /bin/csh
+Kom          /bin/ksh
+(不同的shell对命令的解释不一样)
+
+----------------------------------------------------------------------------
+
+--显示/bin目录下所有sh结尾的文件
+ls -l /bin/*sh
+
+--查看目前系统使用的shell
+env (显示系统的环境变量)
+
+--查看历史记录
+history | more  (分页显示)
+history 5 (显示最近使用的5个命令)
+!5 (执行历史编号为5的命令)
+!ls (执行最后一次以ls开头的命令)
+
+--修改shell
+chsh -s /bin/csh
+
