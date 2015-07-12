@@ -85,9 +85,26 @@ groupadd policeman
 
 --查看系统中所有的组
 cat /etc/group
+显示结果:
+policeman:x:503
+....
+policeman -> 组名
+x -> 无意义
+503 -> 组ID
+
 
 --查看系统中所有用户的信息
 cat /etc/passwd
+显示结果:
+along:x:504:26::/home/along:/bin/bash
+...
+along -> 用户名
+x -> 用户密码，加密过的
+504 -> 用户ID 
+26 -> 用户所在组的ID
+/home/along -> 用户的主目录
+/bin/bash -> 该用户使用的Shell解释器
+
 
 --创建用户并分配到组
 useradd -g 组名 用户名
