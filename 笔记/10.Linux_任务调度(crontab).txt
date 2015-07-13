@@ -8,11 +8,14 @@
 --执行任务
 crontab -e
 
---终止任务
+--终止(删除)任务
 crontab -r
 
 --查看当前所有任务
 crontab -l
+
+--查看用户xiaoming的所有任务
+crontab -l -u xiaoming  
 
 --显示系统当前时间
 date
@@ -34,4 +37,10 @@ chmod 744 mytask.sh
 4.设置任务
 crontab -e * * * * * /root/mytask.sh
 
+--新增任务(第一种: crontab -e，针对某个用户)
+crontab -e * * * * * /root/mytask.sh
+(注: 这种方法编辑的是/var/spool/cron下对应用户的cron文件)
+
+--新增任务(第二种: 编辑/etc/crontab 文件，添加相应的任务，针对系统的任务)
+vi /etc/crontab
 
