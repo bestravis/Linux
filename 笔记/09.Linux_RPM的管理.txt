@@ -1,7 +1,7 @@
 
 RPM(Redhat Package Manager)，是一种用于互联网下载包的打包和安装工具。
 
-apache-??????.i386.rpm (i386表示软件运行的硬件平台)
+apache-xxx.i386.rpm (i386表示软件运行的硬件平台)
 
 --查询Linux中安装了哪些RPM软件
 rpm -qa
@@ -39,7 +39,7 @@ Samba服务可以使Windows与Linux之间实现资源共享。
 
 --安装samba
 cp samba* /home
-rpm -ivh samba-?????.rpm
+rpm -ivh samba-xxxx.rpm
 
 --创建用户
 useradd youyou
