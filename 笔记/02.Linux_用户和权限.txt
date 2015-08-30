@@ -37,11 +37,11 @@ sudoÖ´ĞĞÃüÁîµÄÁ÷³ÌÊÇ°Ñµ±Ç°ÓÃ»§ÇĞ»»µ½root(»òÆäËüÖ¸¶¨ÇĞ»»µ½µÄÓÃ»§)£¬È»ºóÒÔroot(»òÆ
 [beinan@localhost ~]?$ more /etc/shadow/etc/shadow: È¨ÏŞ²»¹»
 
 ÕâÊ±ÎÒÃÇ¿ÉÒÔÓÃsudo more /etc/shadow À´¶ÁÈ¡ÎÄ¼şµÄÄÚÈİ£»¾ÍĞèÒªÔÚ/etc/soduersÖĞ¸øbeinanÊÚÈ¨¡£
-ÓÚÊÇÎÒÃÇ¾Í¿ÉÒÔÏÈsuµ½rootÓÃ»§ÏÂÍ¨¹ıvisudoÀ´ĞŞ¸Ä/etc/sudoers¡£
+ÓÚÊÇÎÒÃÇ¾Í¿ÉÒÔÏÈsuµ½rootÓÃ»§ÏÂÍ¨¹ıvi sudoÀ´ĞŞ¸Ä/etc/sudoers¡£
 
 --ĞŞ¸Ä/etc/sudoers
 su -
-visudo 
+vi sudo 
 ¼ÓÈë beinan ALL=/bin/more 
 
 --²é¿´beinanÍ¨¹ısudoÄÜÖ´ĞĞÄÄĞ©ÃüÁî

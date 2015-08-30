@@ -50,7 +50,6 @@ source /etc/profile »ò . /etc/profile
 java -version
 javac -version
 
-
 ----------------------------------------------------------------------
 °²×°eclipse
 
