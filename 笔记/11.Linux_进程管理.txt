@@ -30,6 +30,11 @@ top -d 10 (10秒刷新一次)
 
 --显示正在执行的进程
 ps -aux | more (a表示显示所有，u表示用户，x表示显示后台进程运行的参数)
+ps -aux | grep java
+
+--查看所有的进程和端口使用情况
+netstat –apn
+netstat –apn | grep 8080
 
 --终止进程
 kill [进程号]
@@ -44,3 +49,5 @@ ps -ef | grep java (查找java进程)
 
 --查看用户root的进程信息
 ps -u root 
+
+
