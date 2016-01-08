@@ -58,6 +58,10 @@ nmcli dev status
   4.验证接口是否配置正确
      ip add
      ping 192.168.1.100
+
+--查看端口映射
+iptables -t nat -L -n 
+iptables -t nat -L -n | grep 80 (查看80端口的映射情况)
  
 ----------------------------------------------------
 
