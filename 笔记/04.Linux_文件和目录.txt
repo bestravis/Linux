@@ -1,171 +1,171 @@
-
-Linux��һ���㼶ʽ����״Ŀ¼�ṹ����Ŀ¼��"/"��
+﻿
+Linux是一个层级式的树状目录结构，根目录是"/"。
 
  / 
-  root - ���root�û�������ļ�
-  home - �����ͨ�û�������ļ�
-  bin  - �����ͨ(����)����
-  sbin - ��ŵ���Ҫ����һ��Ȩ�޲ſ���ʹ�õ�����
-  mnt  - Ĭ�Ϲ��ع�����������Ŀ¼
-  etc  - �����������ļ�
-  var  - ��ž����仯���ļ�
-  boot - ���ϵͳ������ص��ļ�
-  usr  - ��װһ�������Ĭ���ļ��У�������Windows�е� Program Files
+  root - 存放root用户的相关文件
+  home - 存放普通用户的相关文件
+  bin  - 存放普通(常用)命令
+  sbin - 存放的是要具有一定权限才可以使用的命令
+  mnt  - 默认挂载光驱和软驱的目录
+  etc  - 存放配置相关文件
+  var  - 存放经常变化的文件
+  boot - 存放系统引导相关的文件
+  usr  - 安装一个程序的默认文件夹，类似与Windows中的 Program Files
   ......
 
-��ɫ ��ʾ ��ͨ�ļ�
-��ɫ ��ʾ �ļ���
-��ɫ ��ʾ ��ִ���ļ�
+白色 表示 普通文件
+蓝色 表示 文件夹
+绿色 表示 可执行文件
 
 -------------------------------------------------------------------------
-RZ��ʹ��
+RZ的使用
 
---�ϴ������ļ���Linux������
+--上传本地文件到Linux服务器
 rz
 
---��װRZ
-1.��һ��(���밲װ)
---��ȡ��װ������װ
+--安装RZ
+1.第一种(编译安装)
+--获取安装包并安装
 cd /tmp
 wget http://www.ohse.de/uwe/releases/lrzsz-0.12.20.tar.gz
 tar zxvf lrzsz-0.12.20.tar.gz 
 cd lrzsz-0.12.20
 ./configure && make && make install
 
---��������ʹ�����ֱ��ʹ��
+--创建链接使其可以直接使用
 cd /usr/bin
 ln -s /usr/local/bin/lrz rz
 ln -s /usr/local/bin/lsz sz
 
-2.�ڶ���(yum��װ)
+2.第二种(yum安装)
 yum install -y lrzsz
 
 -------------------------------------------------------------------------
 
---���ع���(iso����)
+--挂载光驱(iso镜像)
 mount /mnt/cdrom/
 
---ж�ع���
+--卸载光驱
 unmount /mnt/cdrom/
 
---��ʾ��ǰĿ¼�µ������ļ�
-ls �� dir
+--显示当前目录下的所有文件
+ls 或 dir
 
---���б���ʽ��ʾ
+--以列表形式显示
 ls -l
 
---��ʾȫ��(���������ļ�)
+--显示全部(包含隐藏文件)
 ls -la
 
---��ʾ/etc/Ŀ¼�µ��ļ�
+--显示/etc/目录下的文件
 ls -l /etc/
 
---����C/C++����
+--编译C/C++程序
 gcc hello.cpp
 
---����C/C++���򣬲�ָ���������ļ���
-gcc -o my1 hello.cpp (my1Ϊָ�����ļ�����)
+--编译C/C++程序，并指定编译后的文件名
+gcc -o my1 hello.cpp (my1为指定的文件名称)
 
---ִ�б�����C����
+--执行编译后的C程序
 ./my1
 
---�л�Ŀ¼
-cd Ŀ¼
+--切换目录
+cd 目录
 
---��ʾ��ǰ���ĸ�·����
+--显示当前在哪个路径下
 pwd
 
---����Ŀ¼
-mkdir [Ŀ¼��]
+--创建目录
+mkdir [目录名]
 
---�����հ��ļ�
+--创建空白文件
 touch
 
---�����ļ�
-cp a.out /home/xiaoming/  (��a.out���Ƶ�/home/xiaoming/Ŀ¼��)
+--复制文件
+cp a.out /home/xiaoming/  (把a.out复制到/home/xiaoming/目录下)
 
---�ݹ鸴��
-cp -r ԴĿ¼ Ŀ��Ŀ¼
-cp -rf work/ /home (��work�ļ��и��Ƶ�home�£����Ǹ���)
+--递归复制
+cp -r 源目录 目标目录
+cp -rf work/ /home (把work文件夹复制到home下，覆盖复制)
 
---ɾ���ļ���Ŀ¼
-rm [�ļ�����Ŀ¼��]
+--删除文件或目录
+rm [文件名或目录名]
 
---�ݹ�ɾ��
-rm -rf [Ŀ¼��] (r��ʾ�ݹ飬f��ʾǿ�Ʋ���ʾ)
+--递归删除
+rm -rf [目录名] (r表示递归，f表示强制不提示)
 rm -rf aaa
 
---�ƶ��ļ��͸��ļ���
+--移动文件和改文件名
 mv
 mv dir1 dir2
 mv file1 file2
 
---������������
-ln -s ԴĿ�� ������
+--建立符号链接
+ln -s 源目标 链接名
 ln -s /etc/inittab inittab
-(inittabָ��ʵ���ļ�/etc/inittab)
+(inittab指向实际文件/etc/inittab)
 
---��ҳ��ʾ�ļ�����(�����ո���һҳ)
-more a.log �� less a.log
+--分页显示文件内容(按长空格下一页)
+more a.log 或 less a.log
 
---��ҳ��ʾetcĿ¼�µ��ļ�
+--分页显示etc目录下的文件
 ls -l /etc/ | more
-(|�ǹܵ������ʾ����һ������Ľ����������������)
+(|是管道命令，表示把上一个命令的结果交给后面的命令处理)
 
---���ı��в��ҹؼ���
+--在文本中查找关键词
 grep
-grep "xiaoming" a.java (��a.java�в���xiaoming)
-grep -n "xiaoming" a.java (��ʾ�к�)
+grep "xiaoming" a.java (在a.java中查找xiaoming)
+grep -n "xiaoming" a.java (显示行号)
 
---�����ļ���Ŀ¼
+--搜索文件和目录
 find
-find / -name a.java (ȫ�̲����ļ���Ϊa.java���ļ�)
+find / -name a.java (全盘查找文件名为a.java的文件)
 find /root/ -name a.java
 
---ʮ�����ڴ�ȡ���ļ���Ŀ¼
+--十分钟内存取的文件或目录
 find /home -amin -10
 
---ʮСʱ�ڴ�ȡ���ļ���Ŀ¼
+--十小时内存取的文件或目录
 find /home -atime -10
 
---ʮ�����ڸ��Ĺ����ļ���Ŀ¼
+--十分钟内更改过的文件或目录
 find /home -cmin -10
 
---����/homeĿ¼�´�СΪ10K���ļ�
+--查找/home目录下大小为10K的文件
 find /home -size +10k
 
---�ض�������
+--重定向命令
 >
-grep -n "xiaoming" a.java > a.txt (�Ѵ�a.java�в���xiaoming�Ľ�����浽a.txt��)
-ls -l > a.txt (���б�����д�뵽�ļ�a.txt�У�����д)
-ls -al >> a.txt (׷��д)
+grep -n "xiaoming" a.java > a.txt (把从a.java中查找xiaoming的结果保存到a.txt中)
+ls -l > a.txt (把列表内容写入到文件a.txt中，覆盖写)
+ls -al >> a.txt (追加写)
 
---�����ļ���������
+--查找文件的所有者
 ls -ahl
 
---�޸��ļ����ڵ���
-chgrp ���� �ļ���
+--修改文件所在的组
+chgrp 组名 文件名
 
---�޸�Ŀ¼��������
-chown -R root [Ŀ¼��]
-chown -R root . (�ѵ�ǰĿ¼�������߸�Ϊroot)
+--修改目录的所有者
+chown -R root [目录名]
+chown -R root . (把当前目录的所有者改为root)
 
---ʵʱ�鿴�ļ�����(�����ڼ����־)
-tail -f /usr/tomcat-1/logs/catalina.log ��
-watch -d -n 1 cat /usr/tomcat-1/logs/catalina.log (-d��ʾ������ͬ�ĵط���-n��ʾ������ˢ��һ��)
+--实时查看文件内容(常用于监控日志)
+tail -f /usr/tomcat-1/logs/catalina.log 或
+watch -d -n 1 cat /usr/tomcat-1/logs/catalina.log (-d表示高亮不同的地方，-n表示多少秒刷新一次)
 
---�鿴�ļ�����
+--查看文件内容
 cat a.log
-cat -n a.log  (��ʾ�кţ���������)
-cat -b a.log  (��ʾ�кţ�����������)
-less -N a.log  (��ʾ�кţ���������)
+cat -n a.log  (显示行号，包括空行)
+cat -b a.log  (显示行号，不包括空行)
+less -N a.log  (显示行号，包括空行)
 
---linux�¿�Ŀ¼�ṹ���ӷ���
+--linux下看目录结构更加方便
 apt-get install tree 
 
 -------------------------------------------------------------------------
-SZ �� RZ
+SZ 与 RZ
 
-sz: ��ѡ�����ļ�����(����)�����ػ�����
-rz: ���и�����ᵯ��һ���ļ�ѡ�񴰿ڣ��ӱ���ѡ���ļ��ϴ���Linux��������
+sz: 将选定的文件发送(下载)到本地机器。
+rz: 运行该命令会弹出一个文件选择窗口，从本地选择文件上传到Linux服务器。
 
