@@ -153,6 +153,7 @@ chown -R root . (把当前目录的所有者改为root)
 --实时查看文件内容(常用于监控日志)
 tail -f /usr/tomcat-1/logs/catalina.log 或
 watch -d -n 1 cat /usr/tomcat-1/logs/catalina.log (-d表示高亮不同的地方，-n表示多少秒刷新一次)
+tail -n 20 /usr/tomcat-1/logs/catalina.log (显示最后20行)
 
 --查看文件内容
 cat a.log
