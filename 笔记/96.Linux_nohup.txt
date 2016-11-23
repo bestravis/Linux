@@ -1,0 +1,27 @@
+
+nohup的用法
+
+在Unix/Linux环境，我们一般想让某个程序在后台运行，我们常会用 & 在程序结尾来让程序自动运行。
+比如:
+[root@CC02 /]# ./aaa.sh &
+
+
+可是当我们注销或者屏保后，这个脚本就会自动停止，这时我们就需要nohup命令，怎样使用nohup命令呢？
+请看:
+[root@mail01 script]# nohup ./aaa.sh &
+[2] 10141
+[root@mail01 script]# nohup: ignoring input and appending output to `nohup.out'
+[2]+  Done   nohup ./aaa.sh
+[root@mail01 script]#
+
+注意: 只有当虚拟终端是 $ 或者 # 的时候，才可关闭此终端，否则可能导致已经启动的进程被关闭。
+如果程序持续输出信息而没有出现 $ 或 #，按一下enter即可，原程序的的标准输出被自动改向到当前目录
+下的nohup.out文件，起到了log的作用。
+
+nohup 命令
+用途: 不挂断地运行命令。
+语法: nohup Command [ Arg ... ] [　& ]
+
+推荐用法:
+nohup java -jar ROOT.jar &
+
