@@ -1,189 +1,212 @@
 
-ARP�鿴��·�ɱ��鿴��VLAN��NAT����̬·�ɵȻ�������
+ARP查看、路由表查看、VLAN、NAT、静态路由等基本配置
 
---���������л�������
-init 5 �� startx
+--由命令行切换到窗口
+init 5 或 startx
 
---�ɴ����л���������
+--由窗口切换到命令行
 init 3
 
---�鿴ϵͳĬ�ϵ���������
+--查看系统默认的启动级别
 systemctl get-default
 
---����ϵͳ��������
+--设置系统启动级别
 set-default multi-user.target
 (multi-user.target -> runlevel 3, graphical.target -> runlevel 5)
 
---�鿴��ǰ��¼�û������ڳ�Ա
+--查看当前登录用户的组内成员
 groups 
 
---�鿴�û�tianji���ڵ��鼰���ڳ�Ա
+--查看用户tianji所在的组及组内成员
 groups tianji 
 
---�鿴��ǰ��¼�û���
+--查看当前登录用户名
 who am i 
 
---�л��û�
+--切换用户
 su - gongming
 su - root
 
---�����û�
+--添加用户
 useradd gongming
 
---��������
+--设置密码
 passwd gongming
 
---�鿴IP
+--查看IP
 ifconfig -a
 
 ----------------------------------------------------
---��֤��������������״̬
+--验证网络管理器服务的状态
 systemctl status NetworkManager.service
 
---������������������������ӿ�
+--检查受网络管理器管理的网络接口
 nmcli dev status
 
---���þ�̬IP��ַ
- 1.����/etc/sysconfig/network-scriptsĿ¼��
-    �ҵ��ýӿڵ������ļ���ifcfg-enp0s3��
- 2.�޸�����
+--配置静态IP地址
+ 1.进入/etc/sysconfig/network-scripts目录，
+    找到该接口的配置文件（ifcfg-enp0s3）
+ 2.修改配置
     BOOTPROTO=static
     IPADDR=192.168.230.131
     NETMASK=255.255.255.0
     NM_CONTROLLED=no
     ...
     ONBOOT=yes
-  3.�����������
+  3.重启网络服务
      systemctl restart network.service
-  4.��֤�ӿ��Ƿ�������ȷ
+  4.验证接口是否配置正确
      ip add
      ping 192.168.1.100
 
---�鿴�˿�ӳ��
+--查看端口映射
 iptables -t nat -L -n 
-iptables -t nat -L -n | grep 80 (�鿴80�˿ڵ�ӳ�����)
+iptables -t nat -L -n | grep 80 (查看80端口的映射情况)
+
+--查看端口
+netstat -anp | grep java
+netstat -apn | grep 8080
  
 ----------------------------------------------------
 
---�鿴���ڵ���Դռ�����
+--查看系统当前时间
+date -R
+date
+
+--将系统日期设定成2009年11月3日
+date -s 11/03/2009
+--将系统时间设定成下午5点55分55秒
+date -s 17:55:55
+
+--查看现在的资源占用情况
 top
 
---�鿴�ڴ�ʹ�����
+--查看内存使用情况
 free -g
+free -m
 
---�鿴��ǰ����Ŀ¼�ľ���·��
+--查看当前所在目录的绝对路经
 pwd
 
---ȥĳһ����Ŀ¼(��ʾ�����ļ�)
+--去某一个根目录(显示隐藏文件)
 cd /usr
 
---ȥĳһ����Ŀ¼
+--去某一个子目录
 cd local
 
---���ص���һ��Ŀ¼
+--返回到上一级目录
 cd ..
 
---���ص���Ŀ¼
+--返回到主目录
 cd ~
 
---�鿴����
+--查看进程
 ps
 ps -l
-ps -ef | grep tomcat (����tomcat����)
-ps -ef | grep java (����java����)
+ps -ef | grep tomcat (查找tomcat进程)
+ps -ef | grep java (查找java进程)
 
---�鿴�û�root�Ľ�����Ϣ
+--查看用户root的进程信息
 ps -u root 
 
---�鿴��ǰ����java����
+--查看当前所有java进程
 jps
-jps -v (�鿴��ϸ��Ϣ)
+jps -v (查看详细信息)
 
---��ʾ����ִ�еĽ���
+--显示正在执行的进程
 ps -aux | more 
 
---����
+--清屏
 clear 
 
---����tomcat
+--启动tomcat
 ./startup.sh
 
---�ر�tomcat
+--关闭tomcat
 ./shutdown.sh
 
---ɱ������
-kill ���̺�
-kill -9 ���̺� (9����ֱ��/ǿ��/������ֹ����)
+--杀死进程
+kill 进程号
+kill -9 进程号 (9代表直接/强制/尽快终止进程)
 
---��ʾ��ǰĿ¼����
+--显示当前目录内容
 ls
-ls -l (�鿴��ϸ��Ϣ)
-ls -a (��ʾ�����ļ�)
+ls -l (查看详细信息)
+ls -a (显示隐藏文件)
 
---�ڵ�ǰĿ¼�¸���
-mv �ļ��� ������
+--在当前目录下改名
+mv 文件名 新名称
 
---�ƶ����·���µ��ļ�������·����
-mv ·��/�ļ�  /·��/�ļ�
+--移动相对路经下的文件到绝对路经下
+mv 路经/文件  /路经/文件
 
---�����հ��ļ�
+--创建空白文件
 touch file1
 touch a.txt
 
---����һ��Ŀ¼
-mkdir Ŀ¼��
+--创建一个目录
+mkdir 目录名
 
---ɾ��һ����Ŀ¼
-rmdir ��Ŀ¼��
+--删除一个空目录
+rmdir 空目录名
 
---ɾ��һ���ļ������ļ�
-rm �ļ��� �ļ���
+--删除一个文件或多个文件
+rm 文件名 文件名
 
---�ݹ�ɾ��һ���ǿ�Ŀ¼�µ�һ��
-rm -rf �ǿ�Ŀ¼��
+--递归删除一个非空目录下的一切
+rm -rf 非空目录名
 
---�����ļ�
+--删除
+rm a  #删除文件a
+rm -rf aaa  #将aaa子目录及子目录中所有档案删除,并且不用确认
+
+--复制文件
 cp src.txt dest.txt
 
---��װRZ
+--安装RZ
 apt-get install lrzsz
 
---�ϴ������ļ���Linux������
+--上传本地文件到Linux服务器
 rz
 
---��ʾ�ļ�����
-cat �ļ���
+--显示文件内容
+cat 文件名
 
---��ҳ��ʾ�ļ�����
-more �ļ���
+--分页显示文件内容
+more 文件名
 
---���鿴ͷ��(��ָ������)
-head -n 5 �ļ���
+--仅查看头部(可指定行数)
+head -n 5 文件名
 
---���鿴β��(��ָ��������������ˢ��)
+--仅查看尾部(可指定行数，并不断刷新)
 tail -f ./catalina.out
 
---�༭��ʽ�鿴�ļ�����(���޸�)
-vi �ļ���
+--编辑方式查看文件内容(可修改)
+vi 文件名
 
---�˳�������
+--退出并保存
 :wq
 
---��װtar��
+--安装tar包
 tar -zxvf eclipse-?????.tar.gz
 
---��װrpm��
+--安装rpm包
 rpm -ivh samba-?????.rpm
 
---��װbin��
+--安装bin包
 ./jdk-??????.bin
 
---��/tmp/etc.tar.gz�ļ���ѹ����/usr/local/src��
+--将/tmp/etc.tar.gz文件解压缩在/usr/local/src下
 cd /usr/local/src 
 tar -zxvf /tmp/etc.tar.gz
 
---��/home�ڵ������ļ���������
+--将/home内的所有文件备份下来
 tar -zcvf home.tar.gz /home
 
---��/etc/�ڵ������ļ��������������ұ�����Ȩ��
+--将/etc/内的所有文件备份下来，并且保存其权限
 tar -zxvpf /tmp/etc.tar.gz /etc
+
+--重启
+1.reboot   
+2.shutdown -r now
+
