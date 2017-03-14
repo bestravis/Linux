@@ -210,3 +210,6 @@ tar -zxvpf /tmp/etc.tar.gz /etc
 1.reboot   
 2.shutdown -r now
 
+--根据文件名查找文件
+find / -name nginx
+
