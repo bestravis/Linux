@@ -171,6 +171,7 @@ rz
 
 --显示文件内容
 cat 文件名
+cat -n 文件名 (显示行号)
 
 --分页显示文件内容
 more 文件名
@@ -212,4 +213,12 @@ tar -zxvpf /tmp/etc.tar.gz /etc
 
 --根据文件名查找文件
 find / -name nginx
+
+--统计文件行数
+wc -l 文件名
+
+--统计文件行数(l)、字节数(c)、字数(w)
+wc -lcw 文件名
+
+
 
