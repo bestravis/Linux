@@ -100,6 +100,12 @@ mv
 mv dir1 dir2
 mv file1 file2
 
+--统计文件行数
+wc -l 文件名
+
+--统计文件行数(l)、字节数(c)、字数(w)
+wc -lcw 文件名
+
 --建立符号链接
 ln -s 源目标 链接名
 ln -s /etc/inittab inittab
