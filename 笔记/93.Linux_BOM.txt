@@ -1,0 +1,11 @@
+
+BOM（UTF-8签名）
+
+如果文件本来是gbk格式，当转换为utf8的时候，很多情况下头部会出现bom，如果是源程序就会出现很多意想不到的事情，那怎么办呢？
+可以用linux命令来查找，然后对文件中的bom进行删除，就ok了。
+
+查找文件头中隐藏的BOM字符：
+grep -r $'\xEF\xBB\xBF' application.properties.vm
+
+用vim去BOM：
+:set nobomb
